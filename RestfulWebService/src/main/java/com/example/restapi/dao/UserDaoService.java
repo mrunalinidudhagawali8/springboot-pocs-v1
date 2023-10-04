@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.example.restapi.exception.UserNotFoundException;
 import com.example.restapi.model.User;
 
 @Component
@@ -37,5 +38,17 @@ public class UserDaoService {
 	public User findUserById(int id)
 	{
 		return users.stream().filter(user->user.getId()==id).findFirst().orElse(null);
+	}
+	//deleteOne
+	public void deleteUserById(int id)
+	{
+		User deleteUser =  users.stream().filter(user->user.getId()==id).findFirst().orElse(null);
+		if(deleteUser!=null)
+		{
+			users.remove(deleteUser);
+		}else
+		{
+			throw new UserNotFoundException("Id not found : " + id);
+		}
 	}
 }

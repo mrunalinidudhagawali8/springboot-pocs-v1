@@ -2,10 +2,17 @@ package com.example.restapi.model;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 public class User {
 
 	Integer id;
+	
+	@Size(min = 2, message = "Name should be atleast 2 letters long")
 	String name;
+	
+	@Past(message = "Birthdate should be a date in past")
 	LocalDate birthdate;
 
 	public User(int id, String name, LocalDate birthdate) {

@@ -3,8 +3,11 @@ package com.example.restapi.controller;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +32,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/{id}")
-	private User findOneUser(@PathVariable int id)
+	private User findOneUser(@PathVariable int id) throws Exception
 	{
 		User user = userDaoService.findUserById(id);
 		if(user==null)
@@ -39,8 +42,14 @@ public class UserController {
 		return user;
 	}
 	
+	@DeleteMapping("/user/{id}")
+	private void deleteAUser(@PathVariable int id) throws UserNotFoundException
+	{
+		userDaoService.deleteUserById(id);
+	}
+	
 	@PostMapping("/user")
-	private ResponseEntity<User> createNewUser(@RequestBody User user)
+	private ResponseEntity<User> createNewUser(@Valid @RequestBody User user)
 	{
 		 User savedUser = userDaoService.createUser(user);
 		 
