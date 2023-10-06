@@ -5,11 +5,14 @@ import java.time.LocalDate;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
 
 	Integer id;
 	
 	@Size(min = 2, message = "Name should be atleast 2 letters long")
+	@JsonProperty("user_name")
 	String name;
 	
 	@Past(message = "Birthdate should be a date in past")
