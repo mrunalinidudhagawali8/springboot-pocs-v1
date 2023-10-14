@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -30,6 +29,8 @@ import com.example.restapi.model.Post;
 import com.example.restapi.model.User;
 import com.example.restapi.repo.PostRepository;
 import com.example.restapi.repo.UserRepository;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class UserPostController {

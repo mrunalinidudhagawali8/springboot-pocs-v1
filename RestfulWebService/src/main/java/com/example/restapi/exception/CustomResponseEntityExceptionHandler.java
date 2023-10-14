@@ -35,7 +35,6 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 		return new ResponseEntity(errorResp, HttpStatus.NOT_FOUND);
 	}
 
-	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		ErrorResponse errorResp = new ErrorResponse(LocalDateTime.now(), ex.getFieldError().getDefaultMessage(),
